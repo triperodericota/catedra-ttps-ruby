@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CatedraTtpsRuby</title>
+    <title>Catedra TTPS-Ruby</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <%= render "layouts/header" %>
+    <div id="navbar">
+      <% unless current_user %>
+        <li><%= link_to 'Sign Up', sign_up_path %></li>
+      <% end %>
+      <% if current_user %>
+        <ul class="nav navbar-nav pull-right">
+          <li><span><%= current_user.first_name %></span></li>
+          <li><%= link_to 'Log Out', log_out_path, method: :delete %></li>
+        </ul>
+      <% end %>
+    </div>
     <%= yield %>
+
   </body>
 </html>

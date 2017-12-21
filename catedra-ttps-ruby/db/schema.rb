@@ -10,13 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217172414) do
+ActiveRecord::Schema.define(version: 20171220192740) do
+
+  create_table "courses", force: :cascade do |t|
+    t.integer "year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.string "title", limit: 30, null: false
+    t.integer "approbation_grade", null: false
+    t.datetime "date", null: false
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_evaluations_on_course_id"
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", limit: 30
-    t.string "last_name", limit: 30
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "crypted_password"
+    t.string "salt"
+    t.string "first_name", limit: 30, null: false
+    t.string "last_name", limit: 30, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

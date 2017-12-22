@@ -1,33 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Evaluations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Approbation grade</th>
-      <th>Date</th>
-      <th>Course</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @evaluations.each do |evaluation| %>
-      <tr>
-        <td><%= evaluation.title %></td>
-        <td><%= evaluation.approbation_grade %></td>
-        <td><%= evaluation.date %></td>
-        <td><%= evaluation.course %></td>
-        <td><%= link_to 'Show', evaluation %></td>
-        <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
-        <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Evaluation', new_evaluation_path %>
+<h2>Evaluaciones</h2>
+<div class="row">
+  <div class="col-md-10">
+    <ul class="list-group">
+      <% @evaluations.each do |evaluation| %>
+        <li class="list-group-item justify-content-between">
+          <%= link_to evaluation.title , evaluation, :class => 'list-item-show-link' %>
+          <%= link_to edit_evaluation_path(evaluation), :class => 'btn btn-success list-item-action-link', :role => 'button' do %>
+            <span class="fa fa-edit fa-lg"></span> Editar
+          <% end %>
+          <%= link_to evaluation_path(evaluation) , :method => 'delete', :class => 'btn btn-danger list-item-action-link',
+                      data: { confirm: 'Are you sure?' }, :role => 'button' do %>
+            <span class="fa fa-trash-o fa-lg"></span> Eliminar
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<%= link_to 'Nueva evaluación', new_evaluation_path %>

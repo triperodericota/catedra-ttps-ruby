@@ -34,7 +34,10 @@ gem 'jquery-rails'
 gem 'simple_form'
 
 gem 'sorcery'
-gem 'validates_email_format_of'
+  gem 'validates_email_format_of'
+
+gem 'font-awesome-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

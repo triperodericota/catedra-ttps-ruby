@@ -4,12 +4,13 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.order(:year)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course = Course.find(params[:id])
   end
 
   # GET /courses/new
@@ -19,6 +20,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    @course = Course.find(params[:id])
   end
 
   # POST /courses

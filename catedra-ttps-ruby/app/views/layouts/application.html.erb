@@ -10,19 +10,24 @@
   </head>
 
   <body>
-    <%= render "layouts/header" %>
-    <div id="navbar">
-      <% unless current_user %>
-        <li><%= link_to 'Sign Up', sign_up_path %></li>
-      <% end %>
-      <% if current_user %>
-        <ul class="nav navbar-nav pull-right">
-          <li><span><%= current_user.first_name %></span></li>
-          <li><%= link_to 'Log Out', log_out_path, method: :delete %></li>
-        </ul>
-      <% end %>
+      <%= render "layouts/header" %>
+      <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+          <div id="navbar">
+            <% unless current_user %>
+              <li><%= link_to 'Sign Up', sign_up_path %></li>
+            <% end %>
+            <% if current_user %>
+              <ul class="nav navbar-nav pull-right">
+                <li><span><%= current_user.first_name %></span></li>
+                <li><%= link_to 'Log Out', log_out_path, method: :delete %></li>
+              </ul>
+            <% end %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
     </div>
-    <%= yield %>
-
   </body>
 </html>

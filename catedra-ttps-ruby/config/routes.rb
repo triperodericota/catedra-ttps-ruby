@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :students
   resources :evaluations
   resources :courses
   resources :users, only: [:new, :create]

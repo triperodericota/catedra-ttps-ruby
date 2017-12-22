@@ -1,18 +1,15 @@
-<div class="container">
+<div class="row">
+      <%= form_tag sessions_path, class: 'form-sign-in', method: :post do %>
+        <div class="form-group">
+          <%= label_tag :email, nil , class: 'sr-only' %>
+          <%= email_field_tag :email, nil, placeholder: 'Ingresá tu e-mail', class: 'form-control', required: true %>
+        </div>
 
-  <%= form_tag sessions_path, method: :post, class: 'form-sign-in' do %>
-    <h2 id="form-sign-in-heading">Please sign in</h2>
-    <div class="form-group">
-      <%= label_tag :email, nil , class: 'sr-only' %>
-      <%= email_field_tag :email, nil, placeholder: 'Enter email', class: 'form-control', required: true %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :password, nil, class: 'sr-only'  %>
+          <%= password_field_tag :password, nil, placeholder: 'Ingresá tu contraseña', class: 'form-control', required: true %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :password, nil, class: 'sr-only'  %>
-      <%= password_field_tag :password, nil, placeholder: 'Enter password', class: 'form-control', required: true %>
-    </div>
-
-    <%= submit_tag 'Sign in', class: 'btn btn-primary btn-lg btn-block' %>
-  <% end %>
-
+        <%= submit_tag 'Iniciar sesión', class: 'btn btn-primary btn-lg btn-block' %>
+      <% end %>
 </div>

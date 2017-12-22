@@ -16,10 +16,20 @@
 //Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+@import "font-awesome";
+
 #header{
-  height: 5%;
-  background-color: #A12C2C;
+ height: 5%;
+ background-color: #A12C2C;
 }
 #header-logo{
-  margin-left: 40%;
+ margin-left: 40%;
+}
+
+.list-item-show-link{
+  margin-right: 40%;
+}
+.list-item-action-link{
+  margin-right: 5%;
+  margin-left: 5%;
 }

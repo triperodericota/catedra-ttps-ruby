@@ -1,11 +1,15 @@
+
 <%= simple_form_for(@course) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :year %>
+    <%= f.input :year, label: 'Año de cursada:', placeholder: 'Selecciona el año de la cursada', error: 'Debe indicar un año para la cursada' ,
+        input_html: { min: @course.years_range[0], max: @course.years_range[7], value: @course.years_range[4] }%>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
+    <span>  </span>
+    <%= link_to 'Cancelar', courses_path, :class => 'btn btn-default', :role => 'button' %>
   </div>
 <% end %>

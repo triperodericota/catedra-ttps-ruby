@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<div>
+  <label>Título:</label>
   <%= @evaluation.title %>
-</p>
+</div>
 
-<p>
-  <strong>Approbation grade:</strong>
+<div>
+  <label>Nota de aprobación:</label>
   <%= @evaluation.approbation_grade %>
-</p>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @evaluation.date %>
-</p>
+<div>
+  <label>Fecha:</label>
+  <%= @evaluation.date.localtime %>
+</div>
 
-<p>
-  <strong>Course:</strong>
+<div>
+  <label>Cursadas:</label>
   <%= @evaluation.course %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+<%= link_to 'Editar', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Atras', evaluations_path %>

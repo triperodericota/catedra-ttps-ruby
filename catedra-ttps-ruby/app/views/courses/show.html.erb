@@ -1,9 +1,32 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Year:</strong>
+<div>
+  <label>Año:</label>
   <%= @course.year %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<div>
+  <label>Evaluaciones</label>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Titulo</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% evaluation_number = 1 %>
+      <% @course.evaluations do |evaluation| %>
+        <tr>
+          <th scope="row"><%= evaluation_number %></th>
+          <td><%= evaluation.title %></td>
+          <td><%= evaluation.date %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
+
+</br>
+<%= link_to 'Editar', edit_course_path(@course) %> |
+<%= link_to 'Atras', courses_path %>

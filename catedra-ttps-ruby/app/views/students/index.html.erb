@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Alumnos</h2>
+
+<div class="row">
+  <div class="col-md-10">
+    <ul class="list-group">
+      <% @students.each do |student| %>
+        <li class="list-group-item justify-content-between">
+          <%= link_to student.last_name << " " <<student.first_name , student, :class => 'list-item-show-link' %>
+          <%= link_to edit_student_path(student), :class => 'btn btn-success list-item-action-link', :role => 'button' do %>
+            <span class="fa fa-edit fa-lg"></span> Editar
+          <% end %>
+          <%= link_to student_path(student) , :method => 'delete', :class => 'btn btn-danger list-item-action-link',
+                      data: { confirm: 'Are you sure?' }, :role => 'button' do %>
+            <span class="fa fa-trash-o fa-lg"></span> Eliminar
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= link_to 'Nuevo alumno', new_student_path %>

@@ -1,0 +1,18 @@
+<%= simple_form_for(@student , html: { class: 'form-control-feedback'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'Debe ingresar el/los nombre del alumno',  input_html: { required: true} %>
+    <%= f.input :last_name, label: 'Apellido', placeholder: 'Ingresa el/los apellido/s del alumno', error: 'Debe ingresar el/los apellido/s del alumno',  input_html: { required: true} %>
+    <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'Debe ingresar el DNI del alumno', input_html: { min: '1000000' , max: '100000000', required: true }%>
+    <%= f.input :legajo, placeholder: 'Ingrese el legajo del alumno' %>
+    <%= f.input :email , as: 'email' , placeholder: 'Ingrese la dirección de correo del alumno', error: 'La dirección no es válida', input_html: { required: 'true' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
+    <span>  </span>
+    <%= link_to 'Cancelar', students_path , :class => 'btn btn-default', :role => 'button' %>
+  </div>
+
+<% end %>

@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Titulo</th>
+    <th>Fecha</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% evaluation_number = 1 %>
+  <% @course.evaluations.each do |evaluation| %>
+    <tr>
+      <th scope="row"><%= evaluation_number %></th>
+      <td><%= evaluation.title %></td>
+      <td><%= evaluation.date %></td>
+      <% evaluation_number = evaluation_number.next %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

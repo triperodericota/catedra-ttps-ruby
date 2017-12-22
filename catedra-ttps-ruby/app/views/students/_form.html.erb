@@ -2,11 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'Debe ingresar el/los nombre del alumno',  input_html: { required: true} %>
+    <div class="form-group">
+      <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'Debe ingresar el/los nombre del alumno',  input_html: { required: true } %>
+    </div>
     <%= f.input :last_name, label: 'Apellido', placeholder: 'Ingresa el/los apellido/s del alumno', error: 'Debe ingresar el/los apellido/s del alumno',  input_html: { required: true} %>
     <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'Debe ingresar el DNI del alumno', input_html: { min: '1000000' , max: '100000000', required: true }%>
     <%= f.input :legajo, placeholder: 'Ingrese el legajo del alumno' %>
     <%= f.input :email , as: 'email' , placeholder: 'Ingrese la dirección de correo del alumno', error: 'La dirección no es válida', input_html: { required: 'true' } %>
+    <%= f.association :courses, label: 'Cursada' , collection: Course.all, value_method: :id, label_method: :to_s %>
   </div>
 
   <div class="form-actions">

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
+  before_action :user_authenticated, only: [:new]
 
   def new
   end
@@ -18,6 +19,12 @@ class SessionsController < ApplicationController
     logout
     flash[:success] = 'See you!'
     redirect_to log_in_path
+  end
+
+  def user_authenticated
+    if logged_in?
+      return redirect_to courses_path
+    end
   end
 
 end

@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :students
-  resources :evaluations
-  resources :courses
+  resources :courses do
+    resources :evaluations do
+      member do
+        get 'new_grade', to: 'students_grades#new', as: 'new_grade'
+        post 'load_grade', to: 'students_grades#load_grade', as: 'load_grade'
+        get 'update_grade', to: 'students_grades#update_grade', as: 'update_grade'
+      end
+    end
+    resources :students
+  end
+
+  get 'courses/:id/evaluations_grades', to: 'courses#evaluations_grades', as: 'course_grades'
 
   resources :users, only: [:new, :create]
   get '/sign_up', to: 'users#new', as: :sign_up

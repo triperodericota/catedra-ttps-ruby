@@ -4,15 +4,22 @@
   <%= @course.year %>
 </div>
 
-<div>
-  <label>Evaluaciones</label>
-  <%= render "courses/evaluations_table" %>
-</div>
-<div>
-  <label>Alumnos</label>
-  <%= render "courses/students_table" %>
-</div>
-
+<ul>
+  <li>
+    <div>
+      <%= link_to 'Evaluaciones', course_evaluations_url(@course) %>
+    </div>
+  <li>
+    <div>
+      <%= link_to 'Notas', course_grades_path(@course) %>
+    </div>
+  </li>
+  <li>
+    <div>
+      <%= link_to 'Alumnos', course_students_url(@course) %>
+    </div>
+  </li>
+</ul>
 </br>
 <%= link_to 'Editar', edit_course_path(@course) %>
 <%= link_to 'Atras', courses_path %>

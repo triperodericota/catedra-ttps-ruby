@@ -1,5 +1,9 @@
 es:
   date:
+    order:
+      - :day
+      - :month
+      - :year
     day_names:
       - domingo
       - lunes

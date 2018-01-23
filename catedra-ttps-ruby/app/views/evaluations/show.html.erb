@@ -20,5 +20,4 @@
   <%= @evaluation.course %>
 </div>
 
-<%= link_to 'Editar', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Atras', evaluations_path %>
+<%= link_to 'Editar', edit_course_evaluation_path(@evaluation.course, @evaluation) %>

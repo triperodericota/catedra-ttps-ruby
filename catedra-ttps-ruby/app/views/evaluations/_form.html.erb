@@ -1,11 +1,12 @@
 <%= simple_form_for(@evaluation) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'layouts/form_error_alert', resource: @evaluation %>
+
 
   <div class="form-inputs">
-    <%= f.input :title, label: 'Titulo', placeholder: 'Ingrese el título descriptivo', error: 'Debe ingresar un título' %>
-    <%= f.input :approbation_grade, label: 'Nota de aprobación', placeholder: 'Ingrese la nota mínima necesaria para aprobar', error: 'Debe ingresar la nota necesaria para aprobar', input_html:{ min: '0', max: '100', step: '0.1'}  %>
-    <%= f.input :date, label: 'Fecha', error: 'Debe ingresar la fecha de evaluación' %>
-    <%= f.association :course, label: 'Cursadas' ,  collection: Course.all.order(:year), label_metod: :to_s, value_method: :id, include_blank: false %>
+    <%= f.input :title, label: 'Titulo', placeholder: 'Ingrese el título descriptivo', error: 'El título ingresado es inválida' %>
+    <%= f.input :approbation_grade, label: 'Nota de aprobación', placeholder: 'Ingrese la nota mínima necesaria para aprobar', error: 'La nota ingresada es inválida', input_html:{ min: '0', max: '100', step: '0.1'}  %>
+    <%= f.input :date, label: 'Fecha', error: 'La fecha ingresada es inválida' %>
+    <%= f.association :course, label: 'Cursadas', error: 'La cursada ingresada es inválida', collection: Course.all.order(:year), label_metod: :to_s, value_method: :id, include_blank: false %>
   </div>
 
   <div class="form-actions">

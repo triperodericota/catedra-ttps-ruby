@@ -4,31 +4,28 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+      @evaluations = Evaluation.where('course_id = ?', params[:course_id])
+      @course = Course.find(params[:course_id])
   end
 
-  # GET /evaluations/1
-  # GET /evaluations/1.json
-  def show
-  end
-
-  # GET /evaluations/new
+  #GET /evaluations/new
   def new
     @evaluation = Evaluation.new
+    @evaluation.course = Course.find(params[:course_id])
   end
 
-  # GET /evaluations/1/edit
   def edit
+
   end
 
   # POST /evaluations
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-
+    p @evaluation
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to course_evaluations_url, notice: 'La evaluacion fue creada correctamente!' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -42,7 +39,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to course_evaluations_url, notice: 'La evaluación fue modificada correctamente!' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -56,9 +53,17 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to course_evaluations_url, notice: 'La evaluación fue eliminada correctamente!' }
       format.json { head :no_content }
     end
+  end
+
+  def new_grade
+
+  end
+
+  def load_grade
+
   end
 
   private

@@ -1,4 +1,4 @@
-<%= simple_form_for(@student , html: { class: 'form-control-feedback'}) do |f| %>
+<%= simple_form_for([@student_course, @student]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -9,13 +9,13 @@
     <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'Debe ingresar el DNI del alumno', input_html: { min: '1000000' , max: '100000000', required: true }%>
     <%= f.input :legajo, placeholder: 'Ingrese el legajo del alumno' %>
     <%= f.input :email , as: 'email' , placeholder: 'Ingrese la dirección de correo del alumno', error: 'La dirección no es válida', input_html: { required: 'true' } %>
-    <%= f.association :courses, label: 'Cursada' , collection: Course.all, value_method: :id, label_method: :to_s %>
+    <%= f.input :courses , label: 'Cursada' , collection: Course.all.order(:year), value_method: :id, label_method: :to_s, include_blank: false%>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
     <span>  </span>
-    <%= link_to 'Cancelar', students_path , :class => 'btn btn-default', :role => 'button' %>
+    <%= link_to 'Cancelar', course_students_path , :class => 'btn btn-default', :role => 'button' %>
   </div>
 
 <% end %>

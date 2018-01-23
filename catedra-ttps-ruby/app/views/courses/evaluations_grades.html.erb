@@ -1,0 +1,21 @@
+<h2>Notas de evaluaciones</h2>
+<h4><%= @course.to_s %></h4>
+
+<table class="table table-striped">
+  <thead>
+    <th>Alumno</th>
+    <% @evaluations.each do |e|%>
+      <th><%= e.title %><th>
+    <% end %>
+  </thead>
+  <tbody>
+    <% @students.each do |s|%>
+      <tr>
+        <td><%= s.last_name + " " + s.first_name %></td>
+        <% @grades[s.id].each do |student_grade| %>
+          <td><%= student_grade %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

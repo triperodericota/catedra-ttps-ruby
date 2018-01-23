@@ -1,22 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Evaluaciones</h2>
+<h4><%= @course.to_s %></h4>
 <div class="row">
   <div class="col-md-10">
-    <ul class="list-group">
-      <% @evaluations.each do |evaluation| %>
-        <li class="list-group-item justify-content-between">
-          <%= link_to evaluation.title , evaluation, :class => 'list-item-show-link' %>
-          <%= link_to edit_evaluation_path(evaluation), :class => 'btn btn-success list-item-action-link', :role => 'button' do %>
-            <span class="fa fa-edit fa-lg"></span> Editar
-          <% end %>
-          <%= link_to evaluation_path(evaluation) , :method => 'delete', :class => 'btn btn-danger list-item-action-link',
-                      data: { confirm: 'Are you sure?' }, :role => 'button' do %>
-            <span class="fa fa-trash-o fa-lg"></span> Eliminar
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+      <ul class="list-group">
+        <% @evaluations.each do |evaluation| %>
+          <li class="list-group-item justify-content-between">
+            <div class="row">
+              <div class="col-md-6"><%= link_to evaluation.title , course_evaluation_path(@course, evaluation) %></div>
+              <div class="col-md-2">
+                <%= link_to new_grade_course_evaluation_path(@course, evaluation), html_options = { :class => 'btn btn-primary', :role => 'button'} do %>
+                  <span class="fa fa-address-card-o fa-lg"></span> Cargar nota
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                <%= link_to edit_course_evaluation_path(@course, evaluation), :class => 'btn btn-success', :role => 'button' do %>
+                   <span class="fa fa-edit fa-lg"></span> Editar
+                <% end %>
+              </div>
+              <div class="col-md-2">
+                  <%= link_to course_evaluation_path(@course, evaluation) , :method => 'delete', :class => 'btn btn-danger',
+                  data: { confirm: 'Are you sure?' }, :role => 'button' do %>
+                   <span class="fa fa-trash-o fa-lg"></span> Eliminar
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
   </div>
 </div>
-<%= link_to 'Nueva evaluación', new_evaluation_path %>
+<%= link_to 'Nueva evaluación', new_course_evaluation_path %>

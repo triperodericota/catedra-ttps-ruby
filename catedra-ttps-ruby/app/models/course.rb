@@ -4,13 +4,6 @@ class Course < ApplicationRecord
  has_and_belongs_to_many :students
 
   validates :year, null: false, uniqueness: true, inclusion: { in: :years_range }, presence: true
-  validates_associated :evaluations
-  validate :evaluations_year_equals_to_course_year
-
-  def evaluations_year_equals_to_course_year
-    validations = self.evaluations.each { |evaluation| evaluation.date.year == self.year }
-    errors.add(:evaluations, 'must be same year of course') if validations.include? false
-  end
 
   def years_range
     four_years_ago = Date.current.years_ago 4
@@ -19,7 +12,7 @@ class Course < ApplicationRecord
   end
 
   def to_s
-    self.year.to_s
+    "Cursada #{self.year.to_s}"
   end
 
 

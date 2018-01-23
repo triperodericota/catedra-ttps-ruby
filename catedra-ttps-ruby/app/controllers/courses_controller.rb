@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to @course, notice: 'La cursada fue creada correctamente!' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to @course, notice: 'La cursada fue modificada correctamente!' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -58,8 +58,18 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.html { redirect_to courses_url, notice: 'La cursada fue eliminada correctamente!' }
       format.json { head :no_content }
+    end
+  end
+
+  def evaluations_grades
+    @course = Course.find(params[:id])
+    @evaluations = @course.evaluations
+    @students = @course.students
+    @grades = {}
+    @students.collect do |s|
+      @grades[s.id] = s.student_grades.collect { |student_grade| student_grade.grade }
     end
   end
 
@@ -67,6 +77,7 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
+      @students_grades = StudentGrade.where(evaluation: @course.evaluations)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

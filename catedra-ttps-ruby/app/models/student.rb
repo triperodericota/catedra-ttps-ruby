@@ -9,5 +9,6 @@ class Student < ApplicationRecord
   validates :dni, null: false, presence: true, uniqueness: true ,numericality: { only_integer: true, greater_than_or_equal_to: 1000000 }
   validates :email, null: false, presence: true, uniqueness: true
   validates :legajo, presence: false
+  validates_associated :courses
 
 end

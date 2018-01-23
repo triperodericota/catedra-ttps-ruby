@@ -1,15 +1,13 @@
-<%= simple_form_for([@student_course, @student]) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for([@course, @student]) do |f| %>
+  <%= render 'layouts/form_error_alert', resource: @student %>
 
   <div class="form-inputs">
-    <div class="form-group">
-      <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'Debe ingresar el/los nombre del alumno',  input_html: { required: true } %>
-    </div>
-    <%= f.input :last_name, label: 'Apellido', placeholder: 'Ingresa el/los apellido/s del alumno', error: 'Debe ingresar el/los apellido/s del alumno',  input_html: { required: true} %>
-    <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'Debe ingresar el DNI del alumno', input_html: { min: '1000000' , max: '100000000', required: true }%>
+    <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'El nombre ingresado es inválido',  input_html: { required: true } %>
+    <%= f.input :last_name, label: 'Apellido', placeholder: 'Ingresa el/los apellido/s del alumno', error: 'El apellido ingresado es inválido',  input_html: { required: true} %>
+    <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'El DNI ingresado es inválido', input_html: { min: '1000000' , max: '100000000', required: true }%>
     <%= f.input :legajo, placeholder: 'Ingrese el legajo del alumno' %>
-    <%= f.input :email , as: 'email' , placeholder: 'Ingrese la dirección de correo del alumno', error: 'La dirección no es válida', input_html: { required: 'true' } %>
-    <%= f.input :courses , label: 'Cursada' , collection: Course.all.order(:year), value_method: :id, label_method: :to_s, include_blank: false%>
+    <%= f.input :email , as: 'email' , placeholder: 'Ingrese la dirección de correo del alumno', error: 'La dirección ingrasada es inválida', input_html: { required: 'true' } %>
+    <%= f.input :courses, as: :hidden, input_html: { value: @course } %>
   </div>
 
   <div class="form-actions">

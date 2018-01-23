@@ -6,8 +6,8 @@
 
   <div class="form-inputs">
     <%= f.association :student, label: 'Alumno', error: 'Debe seleccionar un alumno',collection: @course.students, label_method: (:last_name), value_method: :id, include_blank: false, prompt: 'Seleccione un alumno',
-                      input_html: { required: true, data: { update_grade: "true", remote: true, url: update_grade_course_evaluation_url(@course, @student_grade.evaluation) } } %>
-    <%= f.input :grade, label: 'Nota', placeholder: 'Ingrese la nota obtenida por el alumno', error: 'La nota ingresada es inválida', input_html: { required: true, min: 0} %>
+                     selected: @student_grade.student, disabled: true , input_html: { required: true } %>
+    <%= f.input :grade, label: 'Nota', placeholder: 'Ingrese la nota obtenida por el alumno', error: 'La nota ingresada es inválida', input_html: { required: true, min: 0, value: @student_grade.grade} %>
   </div>
 
   <div class="form-actions">

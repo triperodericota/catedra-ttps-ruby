@@ -1,18 +1,18 @@
-<%= simple_form_for(@evaluation) do |f| %>
+<%= simple_form_for([@course, @evaluation]) do |f| %>
   <%= render 'layouts/form_error_alert', resource: @evaluation %>
 
 
   <div class="form-inputs">
-    <%= f.input :title, label: 'Titulo', placeholder: 'Ingrese el título descriptivo', error: 'El título ingresado es inválida' %>
+    <%= f.input :title, label: 'Titulo', placeholder: 'Ingrese el título descriptivo', error: 'El título ingresado es inválido' %>
     <%= f.input :approbation_grade, label: 'Nota de aprobación', placeholder: 'Ingrese la nota mínima necesaria para aprobar', error: 'La nota ingresada es inválida', input_html:{ min: '0', max: '100', step: '0.1'}  %>
     <%= f.input :date, label: 'Fecha', error: 'La fecha ingresada es inválida' %>
-    <%= f.association :course, label: 'Cursadas', error: 'La cursada ingresada es inválida', collection: Course.all.order(:year), label_metod: :to_s, value_method: :id, include_blank: false %>
+    <%= f.input :course, as: :hidden, input_html: { value: @course } %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
     <span>  </span>
-    <%= link_to 'Cancelar', evaluations_path , :class => 'btn btn-default', :role => 'button' %>
+    <%= link_to 'Cancelar', course_evaluations_path(@course) , :class => 'btn btn-default', :role => 'button' %>
   </div>
 
 <% end %>

@@ -1,17 +1,16 @@
 class EvaluationsController < ApplicationController
+  before_action :set_evaluations
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
   # GET /evaluations.json
   def index
-      @evaluations = Evaluation.where('course_id = ?', params[:course_id])
-      @course = Course.find(params[:course_id])
+      @evaluations = @course.evaluations
   end
 
   #GET /evaluations/new
   def new
     @evaluation = Evaluation.new
-    @evaluation.course = Course.find(params[:course_id])
   end
 
   def edit
@@ -22,7 +21,7 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-    p @evaluation
+    @evaluation.course = @course
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to course_evaluations_url, notice: 'La evaluacion fue creada correctamente!' }
@@ -72,8 +71,12 @@ class EvaluationsController < ApplicationController
       @evaluation = Evaluation.find(params[:id])
     end
 
+    def set_evaluations
+      @course = Course.find(params[:course_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
-      params.require(:evaluation).permit(:title, :approbation_grade, :date, :course_id)
+      params.require(:evaluation).permit(:title, :approbation_grade, :date)
     end
 end

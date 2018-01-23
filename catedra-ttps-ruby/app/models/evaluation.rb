@@ -11,7 +11,7 @@ class Evaluation < ApplicationRecord
   validate :evaluation_year_equals_to_course_year
 
   def evaluation_year_equals_to_course_year
-    unless (self.date.year == course.year)
+    unless (self.date.year == self.course.year)
       errors.add(:evaluations, 'must be same year of course')
     end
   end

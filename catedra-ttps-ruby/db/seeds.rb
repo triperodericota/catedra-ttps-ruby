@@ -7,7 +7,7 @@ course_2016 = Course.create(year: 2016)
 course_2017 = Course.create(year: 2017)
 
 #evaluations
-#2016 course's students
+#2016 course's evaluations
 random_dates_2016 = []
 month = 9
 4.times do |i|
@@ -18,11 +18,11 @@ end
   Evaluation.create(title: "Examen #{i+1}", approbation_grade: rand(5..15) + i, date: random_dates_2016[i], course: course_2016)
 end
 
-#2017 course's students
+#2017 course's evaluations
 titles_2017= ["Primer parcial(practicas 1 y 2)", "Segundo parcial(practicas 3 y 4)", "Tercer parcial(practica 5)"]
 dates_2017 = [Time.new(2017,10,5,19), Time.new(2017,11,23,19), Time.new(2017,12,7,19)]
 3.times do |i|
-  Evaluation.create(title: titles_2017[i], approbation_grade: 9, date: dates_2017[i], course: course_2017 )
+  Evaluation.create(title: titles_2017[i], approbation_grade: 9, date: dates_2017[i], course: course_2017)
 end
 
 #students
@@ -37,4 +37,12 @@ end
 #2017 course's students
 10.times do |i|
   course_2017.students << Student.create(first_name: first_names[16-i] , last_name: last_names.sample, dni: rand(10000000...40000000), legajo: "#{rand(1000...15000).to_s}/#{rand(0...9)}", email: "studentmail#{i+10}@gmail.com")
+end
+
+#2016 course's grades
+course_2016.evaluations.collect do |e|
+  presents_students = course_2016.students.sample(rand(6...10))
+  presents_students.each do |s|
+    StudentGrade.create(grade: rand(0...e.approbation_grade), evaluation: e, student: s)
+  end
 end

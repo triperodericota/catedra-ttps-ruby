@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :evaluations_grades]
 
   # GET /courses
   # GET /courses.json
@@ -64,13 +64,15 @@ class CoursesController < ApplicationController
   end
 
   def evaluations_grades
-    @course = Course.find(params[:id])
-    @evaluations = @course.evaluations
-    @students = @course.students
     @grades = {}
-    @students.collect do |s|
-      @grades[s.id] = s.student_grades.collect { |student_grade| student_grade.grade }
+    @course.students.collect do |s|
+        @grades[s.id] = []
+        @course.evaluations.each do |e|
+          evaluation_grade = StudentGrade.find_or_initialize_by(evaluation: e,student: s)
+          @grades[s.id] << evaluation_grade
+        end
     end
+    p @grades
   end
 
   private

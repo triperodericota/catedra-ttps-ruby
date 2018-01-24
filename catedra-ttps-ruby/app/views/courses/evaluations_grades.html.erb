@@ -4,17 +4,48 @@
 <table class="table table-striped">
   <thead>
     <th>Alumno</th>
-    <% @evaluations.each do |e|%>
-      <th><%= e.title %><th>
+    <% @course.evaluations.order(:date).each do |e|%>
+      <th><%= e.title %></th>
     <% end %>
   </thead>
   <tbody>
-    <% @students.each do |s|%>
+    <% @course.students.order(:last_name).each do |s|%>
       <tr>
         <td><%= s.last_name + " " + s.first_name %></td>
         <% @grades[s.id].each do |student_grade| %>
-          <td><%= student_grade %></td>
+          <% if student_grade.id.nil? %>
+            <td>Ausente</td>
+          <% else %>
+            <td><%= student_grade.grade %>
+              <% if student_grade.approved? %>
+                (Aprobado)
+              <% else %>
+                (Desaprobado)
+              <% end %>
+            </td>
+          <% end %>
         <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table table-striped">
+  <thead>
+    <th>Evaluación</th>
+    <th>Cantidad de aprobados</th>
+    <th>Cantidad de desaprobados</th>
+    <th>Cantidad de ausentes</th>
+    <th>Porcentaje de aprobados</th>
+  </thead>
+  <tbody>
+    <% @course.evaluations.each do |e| %>
+      <tr>
+        <td><%= e.title %></td>
+        <td><%= e.amount_of_approved? %></td>
+        <td><%= e.amount_of_disapproved? %></td>
+        <td><%= e.amount_of_absentees? %></td>
+        <td><%= e.approval_percentage? %></td>
       </tr>
     <% end %>
   </tbody>

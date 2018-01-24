@@ -16,7 +16,7 @@ class StudentsGradesController < ApplicationController
     p @student_grade
     respond_to do |format|
       if @student_grade.save
-        format.html { redirect_to course_evaluations_url(evaluation.course, evaluation), notice: 'La nota fue cargada correctamente' }
+        format.html { redirect_to course_evaluations_url(evaluation.course, evaluation), notice: 'La nota fue cargada correctamente!' }
       else
         format.html { render :new }
         format.json { render json: @student_grade.errors, status: :unprocessable_entity }

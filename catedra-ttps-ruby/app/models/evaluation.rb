@@ -16,4 +16,24 @@ class Evaluation < ApplicationRecord
     end
   end
 
+  def amount_of_approved?
+    self.student_grade.where('grade >= ?', self.approbation_grade).size
+  end
+
+  def amount_of_disapproved?
+    self.student_grade.size - self.amount_of_approved?
+  end
+
+  def amount_of_absentees?
+    self.course.students.size - self.students.size
+  end
+
+  def approval_percentage?
+    begin
+      self.amount_of_approved? / (self.course.students.size - self.amount_of_absentees?)
+    rescue ZeroDivisionError
+        0
+    end
+  end
+
 end

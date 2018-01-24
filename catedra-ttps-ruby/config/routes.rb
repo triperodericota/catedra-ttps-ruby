@@ -9,9 +9,10 @@ Rails.application.routes.draw do
       end
     end
     resources :students
+    member do
+      get 'evaluations_grades', to: 'courses#evaluations_grades', as: 'evaluations_grades'
+    end
   end
-
-  get 'courses/:id/evaluations_grades', to: 'courses#evaluations_grades', as: 'course_grades'
 
   resources :users, only: [:new, :create]
   get '/sign_up', to: 'users#new', as: :sign_up

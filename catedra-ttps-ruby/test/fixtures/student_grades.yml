@@ -1,13 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  grade: 
-  grade: 
-  evaluation: one
-  student: one
+perez_first:
+  grade: 10
+  evaluation: first_evaluation
+  student: perez
 
-two:
-  grade: 
-  grade: 
-  evaluation: two
-  student: two
+gonzalez_first:
+  grade: 5
+  evaluation: first_evaluation
+  student: gonzalez
+
+perez_second:
+  grade: 5
+  evaluation: second_evaluation
+  student: perez
+
+gonzalez_second:
+  grade: -2
+  evaluation: second_evaluation
+  student: gonzalez
+
+perez_third:
+  grade: 8
+  evaluation: third_evaluation
+  student: perez
+
+gonzalez_third:
+  grade: 8
+  evaluation: third_evaluation
+  student: gonzalez

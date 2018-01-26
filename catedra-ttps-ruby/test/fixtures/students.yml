@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  DNI: 1
-  legajo: MyString
-  email: MyString
+perez:
+  first_name: Juan
+  last_name: Perez
+  dni: 39548876
+  number: 12345/6
+  email: juanperez@gmail.com
 
-two:
-  first_name: MyString
-  last_name: MyString
-  DNI: 1
-  legajo: MyString
-  email: MyString
+gonzalez:
+  first_name: Jose
+  last_name: Gonzalez
+  dni: 21458794
+  number: 78910/1
+  email: josegonzalez@mail.com

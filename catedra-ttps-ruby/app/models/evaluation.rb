@@ -11,8 +11,12 @@ class Evaluation < ApplicationRecord
   validate :evaluation_year_equals_to_course_year
 
   def evaluation_year_equals_to_course_year
-    unless (self.date.year == self.course.year)
-      errors.add(:evaluations, 'must be same year of course')
+    begin
+      unless (self.date.year == self.course.year)
+        errors.add(:evaluations, 'must be same year of course')
+      end
+    rescue
+        errors.add(:evaluations, 'must be select a course')
     end
   end
 
@@ -25,14 +29,14 @@ class Evaluation < ApplicationRecord
   end
 
   def amount_of_absentees?
-    self.course.students.size - self.students.size
+    self.course.students.size - self.student_grade.size
   end
 
   def approval_percentage?
     begin
-      self.amount_of_approved? / (self.course.students.size - self.amount_of_absentees?)
+      self.amount_of_approved?.to_f / (self.course.students.size - self.amount_of_absentees?).to_f
     rescue ZeroDivisionError
-        0
+      0
     end
   end
 

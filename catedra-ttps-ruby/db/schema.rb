@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109211740) do
+ActiveRecord::Schema.define(version: 20180126164632) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "year", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180109211740) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["evaluation_id", "student_id"], name: "index_student_grades_on_evaluation_id_and_student_id", unique: true
     t.index ["evaluation_id"], name: "index_student_grades_on_evaluation_id"
     t.index ["student_id"], name: "index_student_grades_on_student_id"
   end
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180109211740) do
     t.string "first_name", limit: 30, null: false
     t.string "last_name", limit: 30, null: false
     t.integer "dni", limit: 8, null: false
-    t.string "legajo", limit: 10
+    t.string "number", limit: 10
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

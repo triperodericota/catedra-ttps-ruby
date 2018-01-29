@@ -17,3 +17,9 @@ third_evaluation:
   approbation_grade: 8
   date: 2017-11-20 18:00:00
   course: course_two
+
+fourth_evaluation:
+  title: fourth
+  approbation_grade: 5
+  date: 2016-11-20 18:00:00
+  course: course_one

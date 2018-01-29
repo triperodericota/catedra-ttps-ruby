@@ -4,5 +4,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
   validates :password, confirmation: true
 
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, :email_format => { :message => 'email is invalid' }
+
 end

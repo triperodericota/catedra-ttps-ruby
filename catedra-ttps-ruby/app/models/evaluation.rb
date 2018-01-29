@@ -1,10 +1,10 @@
 class Evaluation < ApplicationRecord
   belongs_to :course
-  has_many :student_grade
+  has_many :student_grade, dependent: :destroy
   has_many :students, through: :student_grade
 
   validates :title, null: false, length: {maximum: 30}, presence: true
-  validates :approbation_grade, null: false, numericality: { greater_than: 1 }
+  validates :approbation_grade, null: false, numericality: { greater_than: 0 }
   validates :date, null: false, presence: true
   validates :course, null: false, presence: true
   validates_associated :course

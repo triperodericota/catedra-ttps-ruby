@@ -57,14 +57,6 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  def new_grade
-
-  end
-
-  def load_grade
-
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation

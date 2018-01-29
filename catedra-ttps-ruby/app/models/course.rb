@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
 
-  has_many :evaluations
- has_and_belongs_to_many :students
+  has_many :evaluations, dependent: :destroy
+ has_and_belongs_to_many :students, dependent: :destroy
 
   validates :year, null: false, uniqueness: true, inclusion: { in: :years_range }, presence: true
 

@@ -16,10 +16,10 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "should not valid incorrectly year's format" do
-    assert_not Course.new(2).valid?
-    assert_not Course.new(457).valid?
-    assert_not Course.new(-2017).valid?
-    assert_not Course.new(1987).valid?
+    assert_not Course.new(year: 2).valid?
+    assert_not Course.new(year: 457).valid?
+    assert_not Course.new(year: -2017).valid?
+    assert_not Course.new(year: 1987).valid?
   end
 
   test "should valid correctly year's format" do
@@ -29,8 +29,8 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "should not valid year out of accepted range" do
-    assert_not Course.new(2013).valid?
-    assert_not Course.new(2023).valid?
+    assert_not Course.new(year: 2013).valid?
+    assert_not Course.new(year: 2023).valid?
     assert Course.new(year: 2014).valid?
     assert Course.new(year: 2021).valid?
   end
@@ -50,21 +50,21 @@ class CourseTest < ActiveSupport::TestCase
     @course_one.students << students(:perez)
     id = @course_one.id
     @course_one.destroy
-    course_one_students = Student.where(course_id: id)
-    assert course_one_students.empty?
+    course_one_students = CoursesStudent.where('course_id = ?', id)
+    assert_empty course_one_students
   end
 
   test "should valid adding associated evaluations" do
-    assert_equal(1,@course_one.evaluations.size)
-    @course_one.evaluations << Evaluation.new(title: 'new evaluation', approbation_grade: 6, date: Time.new(2016))
     assert_equal(2,@course_one.evaluations.size)
+    @course_one.evaluations << Evaluation.new(title: 'new evaluation', approbation_grade: 6, date: Time.new(2016))
+    assert_equal(3,@course_one.evaluations.size)
   end
 
   test "should valid deleting course and its associated evaluations" do
     id = @course_one.id
     @course_one.destroy
-    course_one_evaluations = Evaluation.where(course_id: id)
-    assert course_one_evaluations.empty?
+    course_one_evaluations = Evaluation.where('course_id = ?', id)
+    assert_empty course_one_evaluations
   end
 
 

@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Proyecto de software construido con Rails 5.1.4 como trabajo integrador de la materia Taller 
+de Tecnologías de Producción de Software de la Facultad de Informática - UNLP. A través del sistema
+se pueden gestionar distintos años de cursadas de la materia, las evaluaciones y las notas de los
+alumnos en las mismas.
 
-Things you may want to cover:
+**Dependencias:**
 
-* Ruby version
+Intérprete de Ruby
+Bundler, para las instalación y actualización de las gemas usadas en el proyecto
+Rails
+SQLite3
 
-* System dependencies
+Otras dependencias:
+Bootstrap(4.0.0), como librería de estilos
+Simple-form, para la construcción sencilla de formularios
+Sorcery, como mecanismo de autenticación
+Font Awesome, para el uso de íconos
 
-* Configuration
+**Preparación del ambiente para la ejecución de la app:**
 
-* Database creation
+1 - Clonar el repositorio
+`git clone https://github.com/triperodericota/catedra-ttps-ruby.git`
 
-* Database initialization
+2 - Instalación de las dependencias con Bundler
+`cd catedra-ttps-ruby/
+bundle
+`
+Se utiliza SQLite3 como motor de base de datos, en caso de no disponer de dicho DBMS en sistemas 
+linux se debe ejecutar:
+`sudo apt-get install sqlite3`
 
-* How to run the test suite
+3 - Creación de la BD y carga de datos:
+`rails db:migrate
+rails db:seeds`
 
-* Services (job queues, cache servers, search engines, etc.)
+ó directamente:
+`rails db:setup`
 
-* Deployment instructions
+4 - Para levantar y correr el servidor:
+`rails s`
 
-* ...
+Acceder a la aplicación desde el browser. Por default: localhost:3000/
+
+
+**Tests**
+Para la ejecución de todos los test usar el comando `rails test`. También es posible ejecutar cada
+uno de los tests en forma separada, para esto indicar el path del test que se desea ejecutar 
+(por ejemplo: `rails test test/models/course_test.rb`). En caso de querer ejecutar un método en 
+particular usar el argumento _-n_ junto con el nombre del método deseado.

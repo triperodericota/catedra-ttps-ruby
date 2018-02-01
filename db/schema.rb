@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126164632) do
+ActiveRecord::Schema.define(version: 20180201162608) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "year", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180126164632) do
   end
 
   create_table "student_grades", force: :cascade do |t|
-    t.decimal "grade", precision: 2, scale: 2, default: "0.0"
+    t.decimal "grade", precision: 2, scale: 2
     t.integer "evaluation_id"
     t.integer "student_id"
     t.datetime "created_at", null: false

@@ -16,6 +16,7 @@ Rails
 SQLite3
 
 Otras dependencias:
+
 Bootstrap(4.0.0), como librería de estilos
 
 Simple-form, para la construcción sencilla de formularios
@@ -56,6 +57,9 @@ linux se debe ejecutar:
 `rails s`
 
 Acceder a la aplicación desde el browser. Por default: localhost:3000/
+
+Es posible crear una nueva cuenta de usuario en localhost:3000/sign_up ó
+iniciar sesión con el email _admin@gmail.com_ y la pass _adminadmin_
 
 
 **Tests**

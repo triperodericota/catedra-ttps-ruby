@@ -38,7 +38,7 @@ gem 'sorcery'
 gem 'validates_email_format_of'
 
 gem 'font-awesome-rails'
-
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

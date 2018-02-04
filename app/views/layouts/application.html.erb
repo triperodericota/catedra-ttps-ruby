@@ -13,8 +13,8 @@
       <%= render "layouts/header" %>
         <% unless current_user %>
           <li><%= link_to 'Sign Up', sign_up_path %></li>
-        <% end %>
-        <% if current_user %>
+        <% else %>
+          <%= render 'layouts/navbar' %>
         <% end %>
         <div class="container">
           <%= yield %>

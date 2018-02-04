@@ -59,7 +59,7 @@ linux se debe ejecutar:
 Acceder a la aplicación desde el browser. Por default: localhost:3000/
 
 Es posible crear una nueva cuenta de usuario en localhost:3000/sign_up ó
-iniciar sesión con el email _admin@gmail.com_ y la pass _adminadmin_
+iniciar sesión con el email _admin@mail.com_ y la pass _adminadmin_
 
 
 **Tests**

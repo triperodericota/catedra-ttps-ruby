@@ -25,10 +25,8 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to course_evaluations_url, notice: 'La evaluacion fue creada correctamente!' }
-        format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +37,8 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       if @evaluation.update(evaluation_params)
         format.html { redirect_to course_evaluations_url, notice: 'La evaluación fue modificada correctamente!' }
-        format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +49,6 @@ class EvaluationsController < ApplicationController
     @evaluation.destroy
     respond_to do |format|
       format.html { redirect_to course_evaluations_url, notice: 'La evaluación fue eliminada correctamente!' }
-      format.json { head :no_content }
     end
   end
 

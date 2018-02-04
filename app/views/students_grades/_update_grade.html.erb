@@ -1,12 +1,12 @@
 <h2><%= @student_grade.evaluation.title %></h2>
 
 
-<%= simple_form_for(@student_grade, :url => load_grade_course_evaluation_path(@course, @student_grade.evaluation), :method => :post) do |f| %>
+<%= simple_form_for(@student_grade, :url => update_grade_course_evaluation_path(@course, @student_grade.evaluation), :method => :post) do |f| %>
   <%= render 'layouts/form_error_alert', resource: @student_grade %>
 
   <div class="form-inputs">
     <%= f.association :student, label: 'Alumno', error: 'Debe seleccionar un alumno',collection: @course.students, label_method: (:last_name), value_method: :id, include_blank: false, prompt: 'Seleccione un alumno',
-                     selected: @student_grade.student, disabled: true , input_html: { required: true } %>
+                     selected: @student_grade.student, input_html: { required: true, disabled: true } %>
     <%= f.input :grade, label: 'Nota', placeholder: 'Ingrese la nota obtenida por el alumno', error: 'La nota ingresada es inválida', input_html: { required: true, min: 0, value: @student_grade.grade} %>
   </div>
 

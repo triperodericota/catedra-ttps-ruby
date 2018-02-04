@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = @course.students
+    @students = @course.students.order(:last_name)
   end
 
   # GET /students/1
@@ -30,10 +30,8 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         format.html { redirect_to course_students_url, notice: 'El alumno fue creado correctamente!' }
-        format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +42,8 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to course_students_url(@course), notice: 'Los datos del alumno fueron modificados correctamente!' }
-        format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +54,6 @@ class StudentsController < ApplicationController
     @student.destroy
     respond_to do |format|
       format.html { redirect_to course_students_url(@course), notice: 'El alumno fue eliminado correctamente!' }
-      format.json { head :no_content }
     end
   end
 
@@ -74,6 +69,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :dni, :legajo, :email)
+      params.require(:student).permit(:first_name, :last_name, :dni, :number, :email)
     end
 end

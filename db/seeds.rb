@@ -26,7 +26,7 @@ Course.all.each do |course|
   puts "\n load evaluations for #{course.to_s}"
   month = 9
   3.times do |i|
-    evaluation = Evaluation.create(title: "Examen #{i+1}", approbation_grade: rand(4...10) + i, date: Time.new(course.year, month, rand(1...30)), course: course)
+    evaluation = Evaluation.create(title: "Examen #{i+1}", approbation_grade: rand(4...10), date: Time.new(course.year, month, rand(1...30)), course: course)
     month = month + 1
     puts "\n Evaluation: #{evaluation.title}"
 
@@ -39,3 +39,4 @@ Course.all.each do |course|
 
 end
 
+User.create(email: 'admin@mail.com', password: 'adminadmin')

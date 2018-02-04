@@ -1,7 +1,12 @@
 <nav class="navbar navbar-inverse bg-inverse" style="background-color: #2E2F30">
-  <%= link_to 'Cursadas', courses_path, :class => 'navbar-brand' %>
-  <%= link_to 'Evaluaciones', evaluations_path, :class => 'navbar-brand' %>
-  <%= link_to 'Alumnos', students_path, :class => 'navbar-brand' %>
+  <div class="dropdown show">
+    <%= link_to 'Cursadas', courses_path, :class => 'dropdown-toggle' %>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <% Course.all.order(:year).each do |c| %>
+        <%= link_to c.to_s, c, :class => 'dropdown-item' %>
+      <% end %>
+    </div>
+  </div>
   <%= link_to log_out_path, method: :delete, :class => 'navbar-brand' do %>
     Cerrar sesión<span class="fa fa-arrow-circle-o-right fa-lg"></span>
   <% end %>

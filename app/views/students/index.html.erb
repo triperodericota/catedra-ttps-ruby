@@ -9,7 +9,7 @@
         <li class="list-group-item justify-content-between">
           <div class="row">
             <div class="col-md-7">
-              <%= link_to student.last_name << " " <<student.first_name , course_student_path(@course, student), :class => 'list-item-show-link' %>
+              <%= link_to student.last_name << " " << student.first_name , course_student_path(@course, student), :class => 'list-item-show-link' %>
             </div>
             <div class="col-md-2">
               <%= link_to edit_course_student_path(@course, student), :class => 'btn btn-success list-item-action-link', :role => 'button' do %>
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-2">
               <%= link_to course_student_path(@course, student) , :method => 'delete', :class => 'btn btn-danger list-item-action-link',
-                          data: { confirm: 'Are you sure?' }, :role => 'button' do %>
+                          data: { confirm: "Desea eliminar a #{student.last_name << ' ' << student.first_name} de la cursada?" }, :role => 'button' do %>
                 <span class="fa fa-trash-o fa-lg"></span> Eliminar
               <% end %>
             </div>

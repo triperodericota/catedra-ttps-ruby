@@ -59,8 +59,10 @@ class EvaluationTest < ActiveSupport::TestCase
     assert_equal(0.5,@first.approval_percentage?)
     assert_equal(0, @second.approval_percentage?)
     assert_equal(1, @third.approval_percentage?)
+    @new_evaluation.save
     course_one.evaluations << @new_evaluation
     assert_equal(0,@new_evaluation.approval_percentage?)
+    @new_evaluation.destroy
   end
 
   test "should valid adding students grades of evaluation" do

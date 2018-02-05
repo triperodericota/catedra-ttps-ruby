@@ -39,4 +39,4 @@ Course.all.each do |course|
 
 end
 
-User.create(email: 'admin@mail.com', password: 'adminadmin')
+User.create(first_name: 'Nicolas', last_name: 'Mc Cormack', email: 'admin@mail.com', password: 'adminadmin')

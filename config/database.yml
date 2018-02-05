@@ -10,10 +10,8 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: sqlite3
+  <<: *default
   database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,3 +19,6 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>

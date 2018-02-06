@@ -33,11 +33,8 @@ class Evaluation < ApplicationRecord
   end
 
   def approval_percentage?
-    begin
-      self.amount_of_approved?.to_f / (self.course.students.size - self.amount_of_absentees?).to_f
-    rescue ZeroDivisionError
-      0
-    end
+    return 0 if self.course.students.size == self.amount_of_absentees?
+    (self.amount_of_approved?.to_f / (self.course.students.size - self.amount_of_absentees?).to_f).round 2
   end
 
 end

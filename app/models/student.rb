@@ -18,11 +18,8 @@ class Student < ApplicationRecord
 
   def grade_in?(an_evaluation)
     evaluation = self.student_grades.find_by(evaluation: an_evaluation)
-    unless evaluation.nil?
-      evaluation.grade
-    else
-      "Ausente"
-    end
+    return "Ausente" if evaluation.nil?
+    evaluation.grade
   end
 
 end

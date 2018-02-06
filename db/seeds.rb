@@ -16,7 +16,7 @@ Course.all.each do |course|
   puts "load students for #{course.to_s}"
 
   10.times do
-    first_name = first_names.sample(rand(0...15)).sample
+    first_name = first_names.sample(rand(1...15)).sample
     last_name = last_names.sample(rand(1...11)).sample
     student = Student.create(first_name: first_name, last_name: last_name, dni: Faker::Number.unique.number(8), number: "#{Faker::Number.number(5)}/#{Faker::Number.digit}", email: Faker::Internet.unique.free_email)
     puts "\n Student: #{student.dni}"

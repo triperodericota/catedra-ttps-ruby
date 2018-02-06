@@ -4,9 +4,8 @@ Rails.application.routes.draw do
     resources :evaluations do
       member do
         get 'new_grade', to: 'students_grades#new', as: 'new_grade'
-        post 'create', to: 'students_grades#create', as: 'load_grade'
+        post 'load_grade', to: 'students_grades#load_grade', as: 'load_grade'
         get 'edit_grade', to: 'students_grades#edit', as: 'edit_grade'
-        post 'update', to: 'students_grades#update', as: 'update_grade'
       end
     end
     resources :students

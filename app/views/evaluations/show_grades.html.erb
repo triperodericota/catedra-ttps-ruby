@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <%= student_grade_form.input :student_id, label: 'Alumno', error: 'Debe seleccionar un alumno',collection: @course.students, label_method: (:last_name), value_method: :id, include_blank: false, prompt: 'Seleccione un alumno',
+          <%= student_grade_form.input :student_id, label: 'Alumno', error: 'Debe seleccionar un alumno',collection: @course.students, label_method: :to_s, value_method: :id, include_blank: false, prompt: 'Seleccione un alumno',
                                        selected: lambda { |value| value == student_grade_form.object.student } ,prompt: 'Seleccione un alumno', input_html: { required: true} %>
         </div>
         <div class="col-md-5">

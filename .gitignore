@@ -1,3 +1,4 @@
 .bundle/
-tmp/*
-catedra-ttps-ruby/
+/tmp/*
+/catedra-ttps-ruby/
+/log/

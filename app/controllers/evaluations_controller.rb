@@ -1,6 +1,6 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluations
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation, only: [:show_grades, :show, :edit, :update, :destroy, :load_grades]
 
   # GET /evaluations
   # GET /evaluations.json
@@ -52,8 +52,23 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
+  def show_grades
+    @evaluation.course.students  do |student|
+      @evaluation.student_grade.find_or_initialize_by(student: student)
+    end
+  end
+
+  def load_grades
+    respond_to do |format|
+      if @evaluation.update(student_grade_params) || @evaluation.save(student_grade_params)
+        format.html { redirect_to(course_evaluations_url(@evaluation.course, @evaluation), notice: 'Las notas fueron cargadas correctamente!') }
+     else
+        format.html { render :show_grades }
+      end
+    end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
     end
@@ -65,5 +80,9 @@ class EvaluationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
       params.require(:evaluation).permit(:title, :approbation_grade, :date)
+    end
+
+    def student_grade_params
+      params.require(:evaluation).permit(:id, {student_grade_attributes: [:student_id, :grade, :id]})
     end
 end

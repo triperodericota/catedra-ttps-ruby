@@ -1,0 +1,24 @@
+<%= simple_form_for(@evaluation, :url => load_grades_course_evaluation_path(@evaluation.course, @evaluation), :method => :post) do |f| %>
+  <h4>Notas - <%= @evaluation.title %></h4>
+  <%= f.nested_fields_for :student_grade do |student_grade_form| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <%= student_grade_form.input :student_id, label: 'Alumno', error: 'Debe seleccionar un alumno',collection: @course.students, label_method: (:last_name), value_method: :id, include_blank: false, prompt: 'Seleccione un alumno',
+                                       selected: lambda { |value| value == student_grade_form.object.student } ,prompt: 'Seleccione un alumno', input_html: { required: true} %>
+        </div>
+        <div class="col-md-5">
+          <%= student_grade_form.input :grade, label: 'Nota', placeholder: 'Ingrese la nota obtenida por el alumno', error: 'La nota ingresada es inválida', input_html: { required: true, min: 0}%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= f.add_nested_fields_link :student_grade, 'Cargar nueva nota', class: 'btn btn-success', role: 'button' %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Cargar notas', class: 'btn btn-primary' %>
+    <span>  </span>
+    <%= link_to 'Cancelar', course_evaluations_path(@evaluation.course, @evaluation) , :class => 'btn btn-default', :role => 'button' %>
+  </div>
+
+<% end %>

@@ -10,8 +10,8 @@
             <div class="row">
               <div class="col-md-6"><%= link_to evaluation.title , course_evaluation_path(@course, evaluation) %></div>
               <div class="col-md-2">
-                <%= link_to new_grade_course_evaluation_path(@course, evaluation), html_options = { :class => 'btn btn-primary', :role => 'button'} do %>
-                  <span class="fa fa-address-card-o fa-lg"></span> Cargar nota
+                <%= link_to show_grades_course_evaluation_path(@course, evaluation), html_options = { :class => 'btn btn-primary', :role => 'button'} do %>
+                  <span class="fa fa-address-card-o fa-lg"></span> Cargar notas
                 <% end %>
               </div>
               <div class="col-md-2">

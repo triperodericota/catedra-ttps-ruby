@@ -3,6 +3,8 @@ class Evaluation < ApplicationRecord
   has_many :student_grade, dependent: :destroy
   has_many :students, through: :student_grade
 
+  accepts_nested_attributes_for :student_grade, allow_destroy: true
+
   validates :title, null: false, length: {maximum: 30}, presence: true
   validates :approbation_grade, null: false, numericality: { greater_than: 0 }
   validates :date, null: false, presence: true
@@ -19,6 +21,12 @@ class Evaluation < ApplicationRecord
         errors.add(:evaluations, 'must be select a course')
     end
   end
+
+  def students_grades_for_form
+
+  end
+
+
 
   def amount_of_approved?
     self.student_grade.where('grade >= ?', self.approbation_grade).size

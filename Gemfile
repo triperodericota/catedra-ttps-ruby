@@ -31,6 +31,7 @@ gem 'rails_bootstrap_navbar'
 gem 'jquery-rails'
 
 gem 'simple_form'
+gem 'nested_form_fields'
 
 gem 'sorcery'
 gem 'validates_email_format_of'

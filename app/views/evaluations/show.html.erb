@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div>
   <label>Título:</label>
   <%= @evaluation.title %>
@@ -12,12 +10,12 @@
 
 <div>
   <label>Fecha:</label>
-  <%= @evaluation.date.localtime %>
+  <%= @evaluation.date.to_s.gsub(/-+(\d{4})/,'') %>
 </div>
 
 <div>
-  <label>Cursadas:</label>
   <%= @evaluation.course %>
 </div>
 
-<%= link_to 'Editar', edit_course_evaluation_path(@evaluation.course, @evaluation) %>
+
+<%= link_to 'Editar', edit_course_evaluation_path(@evaluation.course, @evaluation), :class => 'btn btn-success edit-button' %>

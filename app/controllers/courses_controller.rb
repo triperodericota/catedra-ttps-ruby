@@ -44,7 +44,8 @@ class CoursesController < ApplicationController
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'La cursada fue modificada correctamente!' }
       else
-        format.html { render :edit } end
+        format.html { render :edit }
+      end
     end
   end
 

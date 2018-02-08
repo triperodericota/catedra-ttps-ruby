@@ -7,23 +7,25 @@ alumnos en las mismas.
 
 **Dependencias:**
 
-Intérprete de Ruby
+- Intérprete de Ruby
 
-Bundler, para las instalación y actualización de las gemas usadas en el proyecto
+- Bundler, para las instalación y actualización de las gemas usadas en el proyecto
 
-Rails
+- Rails
 
-SQLite3
+- SQLite3
+
+- PostgreSQL
 
 Otras dependencias:
 
-Bootstrap(4.0.0), como librería de estilos
+- Bootstrap(4.0.0), como librería de estilos
 
-Simple-form, para la construcción sencilla de formularios
+- Simple-form, para la construcción sencilla de formularios
 
-Sorcery, como mecanismo de autenticación
+- Sorcery, como mecanismo de autenticación
 
-Font Awesome, para el uso de íconos
+- Font Awesome, para el uso de íconos
 
 **Preparación del ambiente para la ejecución de la app:**
 
@@ -37,12 +39,12 @@ Font Awesome, para el uso de íconos
 
 `bundle`
 
-Se utiliza SQLite3 como motor de base de datos, en caso de no disponer de dicho DBMS en sistemas 
+Se utiliza SQLite3 como motor de base de datos (en ambientes de desarrollo y test), en caso de no disponer de dicho DBMS en sistemas 
 linux se debe ejecutar:
 
 `sudo apt-get install sqlite3`
 
-3 - Creación de la BD y carga de datos:
+3 - Creación de la DB y carga de datos:
 
 `rails db:migrate`
 
@@ -56,9 +58,9 @@ linux se debe ejecutar:
 
 `rails s`
 
-Acceder a la aplicación desde el browser. Por default: localhost:3000/
+Acceder a la aplicación desde el browser. Por default en: [localhost:3000/](http://localhost:3000/)
 
-Es posible crear una nueva cuenta de usuario en localhost:3000/sign_up ó
+Es posible crear una nueva cuenta de usuario en [localhost:3000/sign_up](localhost:3000/sign_up) ó
 iniciar sesión con el email _admin@mail.com_ y la pass _adminadmin_
 
 
@@ -68,3 +70,8 @@ Para la ejecución de todos los test usar el comando `rails test`. También es p
 uno de los tests en forma separada, para esto indicar el path del test que se desea ejecutar 
 (por ejemplo: `rails test test/models/course_test.rb`). En caso de querer ejecutar un método en 
 particular usar el argumento _-n_ junto con el nombre del método deseado.
+
+
+
+El proyecto fue subido a la plataforma de [Heroku](https://heroku.com) y puede ser accedida a través
+de este [link](https://gestion-ttps-ruby.herokuapp.com/log_in).

@@ -60,10 +60,14 @@ class EvaluationsController < ApplicationController
 
   def load_grades
     respond_to do |format|
-      if @evaluation.update(student_grade_params) || @evaluation.save(student_grade_params)
-        format.html { redirect_to(course_evaluations_url(@evaluation.course, @evaluation), notice: 'Las notas fueron cargadas correctamente!') }
-     else
-        format.html { render :show_grades }
+      begin
+        if @evaluation.update(student_grade_params) || @evaluation.save(student_grade_params)
+          format.html { redirect_to(course_evaluations_url(@evaluation.course, @evaluation), notice: 'Las notas fueron cargadas correctamente!') }
+       else
+          format.html { render :show_grades }
+        end
+    rescue
+        format.html { redirect_to(course_evaluations_url(@evaluation.course, @evaluation), notice: 'Las notas no pudieron ser cargadas, por favor intente más trade!') }
       end
     end
   end

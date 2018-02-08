@@ -1,5 +1,6 @@
+<h4>Notas - <%= @evaluation.title %></h4>
 <%= simple_form_for(@evaluation, :url => load_grades_course_evaluation_path(@evaluation.course, @evaluation), :method => :post) do |f| %>
-  <h4>Notas - <%= @evaluation.title %></h4>
+  <%= render 'layouts/form_error_alert', resource: @evaluation %>
   <%= f.nested_fields_for :student_grade do |student_grade_form| %>
     <div class="container">
       <div class="row">
@@ -9,7 +10,11 @@
         </div>
         <div class="col-md-5">
           <%= student_grade_form.input :grade, label: 'Nota', placeholder: 'Ingrese la nota obtenida por el alumno', error: 'La nota ingresada es inválida', input_html: { required: true, min: 0}%>
-        </div>
+          <% if student_grade_form.object.grade.nil? %>
+              <%= f.remove_nested_fields_link :student_grade do %>
+                <span class="fa fa-trash-o"></span>
+              <% end %>
+          <% end %>
       </div>
     </div>
   <% end %>

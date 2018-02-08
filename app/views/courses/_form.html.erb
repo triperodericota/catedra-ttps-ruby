@@ -1,6 +1,6 @@
 
 <%= simple_form_for(@course) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'layouts/form_error_alert', resource: @course %>
 
   <div class="form-inputs">
     <%= f.input :year, label: 'Año de cursada:', placeholder: 'Selecciona el año de la cursada', error: 'Debe indicar un año para la cursada' ,

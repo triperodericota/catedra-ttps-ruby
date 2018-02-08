@@ -2,7 +2,7 @@
   <%= render 'layouts/form_error_alert', resource: @student %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'El nombre ingresado es inválido',  input_html: { required: true } %>
+    <%= f.input :first_name, label: 'Nombre', placeholder: 'Ingresa el/los nombre/s del alumno', error: 'El nombre ingresado es inválido', input_html: { required: true } %>
     <%= f.input :last_name, label: 'Apellido', placeholder: 'Ingresa el/los apellido/s del alumno', error: 'El apellido ingresado es inválido',  input_html: { required: true} %>
     <%= f.input :dni, label: 'DNI', placeholder: 'Ingrese el DNI del alumno sin puntos (.)', error: 'El DNI ingresado es inválido', input_html: { min: '1000000' , max: '100000000', required: true }%>
     <%= f.input :number, label: 'Legajo', placeholder: 'Ingrese el legajo del alumno' %>

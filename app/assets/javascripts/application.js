@@ -17,4 +17,16 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require nested_form_fields
+//= require sweetalert2
+
+
+
+var sweetAlertConfirmConfig = {
+    title: 'Are you sure?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Ok'
+};
+
 

@@ -10,7 +10,7 @@
           <span class="fa fa-edit fa-lg"></span> Editar
          <% end %>
          <%= link_to course_path(course) , :method => 'delete', :class => 'btn btn-danger list-item-action-link',
-                     data: { confirm: 'Are you sure?' }, :role => 'button' do %>
+                     data: { confirm: "Desea eliminar la #{course.to_s} ?" }, :role => 'button' do %>
            <span class="fa fa-trash-o fa-lg"></span> Eliminar
          <% end %>
        </li>

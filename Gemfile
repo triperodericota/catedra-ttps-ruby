@@ -30,6 +30,8 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'rails_bootstrap_navbar'
 gem 'jquery-rails'
 
+gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
+
 gem 'simple_form'
 gem 'nested_form_fields'
 

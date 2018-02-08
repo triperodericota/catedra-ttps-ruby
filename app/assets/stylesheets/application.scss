@@ -18,6 +18,11 @@
 
 @import "font-awesome";
 
+/*
+  *= require_self
+ *= require sweetalert2
+ *= require_tree .
+ */
 #header{
  height: 5%;
  background-color: #A12C2C;

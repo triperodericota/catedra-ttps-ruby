@@ -1,13 +1,19 @@
 <div class="row">
       <%= form_tag sessions_path, class: 'form-sign-in', method: :post do %>
+        <% if @errors.any? %>
+          <div id="error-explanation">
+            <div class="alert alert-danger" role="alert">
+              <h6><%= @errors.first %></h6>
+          </div>
+        <% end %>
         <div class="form-group">
           <%= label_tag :email, nil , class: 'sr-only' %>
-          <%= email_field_tag :email, nil, placeholder: 'Ingresá tu e-mail', class: 'form-control', required: true %>
+          <%= email_field_tag :email, nil , error: 'El email ingresado es incorrecto',placeholder: 'Ingresá tu e-mail', class: 'form-control', required: true %>
         </div>
 
         <div class="form-group">
           <%= label_tag :password, nil, class: 'sr-only'  %>
-          <%= password_field_tag :password, nil, placeholder: 'Ingresá tu contraseña', class: 'form-control', required: true %>
+          <%= password_field_tag :password, nil, error: 'La contraseña ingresada es incorrecta', placeholder: 'Ingresá tu contraseña', class: 'form-control', required: true %>
         </div>
 
         <%= submit_tag 'Iniciar sesión', class: 'btn btn-primary btn-lg btn-block' %>

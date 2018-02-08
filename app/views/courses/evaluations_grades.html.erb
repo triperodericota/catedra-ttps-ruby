@@ -11,7 +11,7 @@
   <tbody>
     <% @course.students.order(:last_name).each do |s|%>
       <tr>
-        <td><%= s.last_name + " " + s.first_name %></td>
+        <td><%= s.to_s %></td>
         <% @grades[s.id].each do |student_grade| %>
           <% if student_grade.id.nil? %>
             <td>Ausente</td>

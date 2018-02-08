@@ -1,25 +1,20 @@
-<h1>Registration</h1>
+<h1>Registrarse</h1>
+<%= simple_form_for(@user, :url => users_path , :method => :post) do |f| %>
+  <%= render 'layouts/form_error_alert', resource: @user %>
 
-<%= form_for @user do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :first_name, class: 'form-control', required: true %>
+  <div class="form-inputs">
+    <%= f.input :first_name, label: 'Nombre', error: 'El nombre ingresado no es válido', placeholder: 'Ingrese su nombre' , input_html: { required: true } %>
+    <%= f.input :last_name, label: 'Apellido', error: 'El apellido ingresado no es válido', placeholder: 'Ingrese su apellido' , input_html: { required: true } %>
+    <%= f.input :email, label: 'Email', error: 'La direccion ingresada no es válida', placeholder: 'Ingrese su dirección de correo' , input_html: { required: true } %>
+    <%= f.input :password, label: 'Contraseña', error: 'La contraseña ingresada no es válida', placeholder: 'Ingrese su contraseña.Debe tener al menos 8 caracteres' , input_html: { required: true } %>
+    <%= f.input :password_confirmation, label: 'Confirmación de contraseña', error: 'La contraseña ingresada no es válida', placeholder: 'Ingrese nuevamente la misma contraseña' , input_html: { required: true } %>
+
   </div>
-  <div class="form-group">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: 'form-control', required: true %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Registrarse', class: 'btn btn-primary' %>
+    <span>  </span>
+    <%= link_to 'Cancelar', root_path, :class => 'btn btn-default', :role => 'button' %>
   </div>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
-  </div>
-  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
+
 <% end %>

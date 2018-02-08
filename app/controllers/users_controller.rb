@@ -8,12 +8,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      login(params[:email], params[:password])
-      redirect_back_or_to(:users, notice: 'Login successful')
-    else
-      flash.now[:alert] = 'Login failed'
-      render action: 'new'
+    respond_to do |format|
+      if @user.save
+        login(params[:email], params[:password])
+        format.html { redirect_to root_url, notice: "Bienvenido #{@user.first_name} !" }
+      else
+        format.html { render 'new' }
+      end
     end
   end
 

@@ -1,17 +1,19 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
   before_action :user_authenticated, only: [:new]
+  before_action :set_errors
 
   def new
   end
 
   def create
-    if login(params[:email], params[:password])
-      flash[:success] = 'Welcome back!'
-      redirect_to :controller => :courses, :action => :index
-    else
-      flash.now[:warning] = 'E-mail and/or password is incorrect.'
-      render 'new'
+    respond_to do |format|
+      if login(params[:email], params[:password])
+        format.html { redirect_to courses_url, notice: 'Bienvenido!' }
+      else
+        @errors << "El email y/o contraseña son incorrectos !"
+        format.html { render 'new' }
+      end
     end
   end
 
@@ -27,4 +29,9 @@ class SessionsController < ApplicationController
     end
   end
 
+  private
+
+  def set_errors
+    @errors = []
+  end
 end
